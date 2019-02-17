@@ -1,0 +1,34 @@
+from random import *
+number=randint(1,100)
+print('We will play a guessitng game!\nComputer picks a number between 1 and 100 and you have to guess the number.')
+print('If your guess is within 10 of the number, you will be prompted with "WARM" message.\nIf it is further away the message will be "COLD".')
+print('On subsequent turns, if you are getting closer to the number, you will see "WARMER", if you are getting further away it will be "COLDER"')
+print('You will be told when you guess correctly and how many guesses it took you. Good luck!')
+guess_list=[]
+guess=int(input('Your first guess: '))
+guess_list.append(guess)
+if guess >100 or guess<0:
+    print("Out of bounds!")
+elif abs(guess-number)<10 and abs(guess-number)>0:
+    print("WARM")
+elif abs(guess-number)>10:
+    print("COLD")
+elif guess==number:
+    pass
+while guess!=number:
+    guess=int(input('Your next guess: '))
+    guess_list.append(guess)
+    if guess==number:
+        pass
+    elif guess_list[-1]>100 or guess_list[-1]<=0:
+        print("Out of bounds!")
+        continue
+    elif abs(guess_list[-1]-number)< abs(guess_list[-2]-number):
+        print("WARMER")
+        continue
+    elif abs(guess_list[-1]-number)> abs(guess_list[-2]-number):
+        print("COLDER")
+        continue
+else:
+    print("CORRECT!")
+    print(f'Number of tries: {len(guess_list)}. Congratulations!')
